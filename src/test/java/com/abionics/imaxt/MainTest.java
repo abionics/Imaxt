@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MainTest {
     @Test
-    void codeText() {
+    void codeTextTest() {
         try {
             var file = new File(RandomString.nextIdentifier(5) + ".png");
             for (int textLength = 1; textLength < 20; textLength += 2) {
