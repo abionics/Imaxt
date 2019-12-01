@@ -64,13 +64,15 @@ public class Imcryptor {
             byte[] content = new byte[data.length - separator];
             for (int i = 0; i < data.length - separator; i++)
                 content[i] = (byte) data[i + separator];
-            var writer = new FileOutputStream(new File(directory + title));
+            FileOutputStream writer;
             if (isCreateFile) {
                 FileChooser chooser = new FileChooser();
                 chooser.setInitialFileName(title);
                 File file = chooser.showSaveDialog(window);
                 if (file == null) return "";
                 writer = new FileOutputStream(file);
+            } else {
+                writer = new FileOutputStream(new File(directory + title));
             }
             writer.write(content);
             writer.close();

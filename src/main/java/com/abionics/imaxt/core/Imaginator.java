@@ -61,7 +61,7 @@ public class Imaginator {
         return pixels;
     }
 
-    void save(File output) throws IOException {
+    public void save(File output) throws IOException {
         ImageIO.write(image, "png", output);
     }
 }
