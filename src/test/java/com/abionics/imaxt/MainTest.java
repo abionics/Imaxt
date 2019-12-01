@@ -8,19 +8,18 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.ThreadLocalRandom;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MainTest {
     @Test
     void codeText() {
         try {
-            var file = new File("test.png");
+            var file = new File(RandomString.nextIdentifier(5) + ".png");
             for (int textLength = 1; textLength < 20; textLength += 2) {
-                var text = RandomString.next(textLength);
+                var text = RandomString.nextString(textLength);
                 for (int passwordLength = 1; passwordLength < 10; passwordLength += 2) {
-                    var password = RandomString.next(passwordLength);
+                    var password = RandomString.nextString(passwordLength);
                     for (var space : ChannelsSpace.values()) {
                         Imaginator imaginator = Coder.code(text, password, space);
                         imaginator.save(file);
@@ -32,6 +31,7 @@ class MainTest {
                     }
                 }
             }
+            file.delete();
         } catch (IOException e) {
             e.printStackTrace();
         }
