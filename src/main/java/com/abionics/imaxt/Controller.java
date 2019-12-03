@@ -32,8 +32,7 @@ public class Controller {
     private File image;
 
 
-    @FXML
-    private void initialize() {
+    @FXML private void initialize() {
         if (new File(DIRECTORY).mkdir()) {
             System.out.println("Created data directory");
         }
@@ -79,7 +78,7 @@ public class Controller {
             if (file == null && isUseFileCheckBox.isSelected()) throw new IOException("Controller::code: choose file");
             String text = textArea.getText();
             String password = passwordTextField.getText();
-            ChannelsSpace space = ChannelsSpace.valueOf(channelsSpaceComboBox.getValue());
+            var space = ChannelsSpace.valueOf(channelsSpaceComboBox.getValue());
             if (isUseFileCheckBox.isSelected()) {
                 imcryptor.code(file, password, space);
             } else {
@@ -95,7 +94,7 @@ public class Controller {
         try {
             if (image == null) throw new IOException("Controller::decode: choose image");
             String password = passwordTextField.getText();
-            ChannelsSpace space = ChannelsSpace.valueOf(channelsSpaceComboBox.getValue());
+            var space = ChannelsSpace.valueOf(channelsSpaceComboBox.getValue());
             String text = imcryptor.decode(image, password, space);
             textArea.setText(text);
         } catch (Exception e) {
