@@ -74,8 +74,11 @@ public class Controller {
     }
 
     @FXML private void code() {
+        if (file == null && isUseFileCheckBox.isSelected()) {
+            showError("Choose file or switch to text mode");
+            return;
+        }
         try {
-            if (file == null && isUseFileCheckBox.isSelected()) throw new IOException("Controller::code: choose file");
             String text = textArea.getText();
             String password = passwordTextField.getText();
             var space = ChannelsSpace.valueOf(channelsSpaceComboBox.getValue());
@@ -84,20 +87,23 @@ public class Controller {
             } else {
                 imcryptor.code(text, password, space);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             showError(e.getMessage());
             e.printStackTrace();
         }
     }
 
     @FXML private void decode() {
+        if (image == null) {
+            showError("Choose image to decode");
+            return;
+        }
         try {
-            if (image == null) throw new IOException("Controller::decode: choose image");
             String password = passwordTextField.getText();
             var space = ChannelsSpace.valueOf(channelsSpaceComboBox.getValue());
             String text = imcryptor.decode(image, password, space);
             textArea.setText(text);
-        } catch (Exception e) {
+        } catch (IOException e) {
             showError(e.getMessage());
             e.printStackTrace();
         }
