@@ -3,7 +3,9 @@ package com.abionics.imaxt;
 import com.abionics.imaxt.core.ChannelsSpace;
 import com.abionics.imaxt.core.Imaginator;
 import com.abionics.imaxt.core.coder.Coder;
+import com.abionics.imaxt.core.coder.CoderException;
 import com.abionics.imaxt.core.decoder.Decoder;
+import com.abionics.imaxt.core.decoder.DecoderException;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -32,7 +34,7 @@ class MainTest {
                 }
             }
             file.delete();
-        } catch (IOException e) {
+        } catch (IOException | DecoderException | CoderException e) {
             e.printStackTrace();
         }
     }

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Coder {
     @NotNull
     @Contract("null, _, _ -> fail")
-    public static Imaginator code(Object input, String password, ChannelsSpace space) throws IOException {
+    public static Imaginator code(Object input, String password, ChannelsSpace space) throws CoderException {
         byte[] data;
         if (input instanceof File) {
             File file = (File) input;
@@ -20,7 +20,7 @@ public class Coder {
             String text = (String) input;
             data = Converter.convert(text, password);
         } else {
-            throw new IOException("Coder::code: undefined input type");
+            throw new CoderException("Undefined input type", "Coder::code");
         }
 
         byte[][][] pixels = Allocator.allocate(data, space);

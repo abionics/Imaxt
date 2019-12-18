@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class Decoder {
     @NotNull
-    public static char[] decode(File image, String password, ChannelsSpace space) throws IOException {
+    public static char[] decode(File image, String password, ChannelsSpace space) throws DecoderException, IOException {
         Imaginator imaginator = new Imaginator(image);
         byte[][][] pixels = imaginator.pixels();
         byte[] code = Deallocator.deallocate(pixels, space);

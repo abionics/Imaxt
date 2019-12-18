@@ -13,6 +13,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/imaxt.fxml"));
         primaryStage.setTitle("Imaxt");
         primaryStage.setScene(new Scene(root, 500, 540));
+        primaryStage.setMinWidth(400);
+        primaryStage.setMinHeight(500);
         primaryStage.show();
     }
 

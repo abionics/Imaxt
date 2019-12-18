@@ -1,7 +1,9 @@
 package com.abionics.imaxt.core;
 
 import com.abionics.imaxt.core.coder.Coder;
+import com.abionics.imaxt.core.coder.CoderException;
 import com.abionics.imaxt.core.decoder.Decoder;
+import com.abionics.imaxt.core.decoder.DecoderException;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import org.jetbrains.annotations.Contract;
@@ -29,7 +31,7 @@ public class Imcryptor {
         this.isCreateFile = isCreateFile;
     }
 
-    public void code(Object input, String password, ChannelsSpace space) throws IOException {
+    public void code(Object input, String password, ChannelsSpace space) throws IOException, CoderException {
         Imaginator imaginator = Coder.code(input, password, space);
 
         var chooser = new FileChooser();
@@ -40,7 +42,7 @@ public class Imcryptor {
         imaginator.save(file);
     }
 
-    public String decode(File input, String password, ChannelsSpace space) throws IOException {
+    public String decode(File input, String password, ChannelsSpace space) throws IOException, DecoderException {
         char[] data = Decoder.decode(input, password, space);
 
         int separator = 0;

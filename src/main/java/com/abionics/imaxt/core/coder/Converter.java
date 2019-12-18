@@ -12,14 +12,18 @@ import static com.abionics.imaxt.core.Imcryptor.*;
 
 class Converter {
     @NotNull
-    static byte[] convert(final @NotNull File file, String password) throws IOException {
-        byte[] title = file.getName().getBytes();
-        byte[] content = Files.readAllBytes(file.toPath());
-        byte[] data = new byte[title.length + 1 + content.length];
-        System.arraycopy(title, 0, data, 0, title.length);
-        System.arraycopy(content, 0, data, title.length + 1, content.length);
-        var representation = CharacterRepresentation.ONE_BYTE;
-        return convert(data, representation, password);
+    static byte[] convert(final @NotNull File file, String password) throws CoderException {
+        try {
+            byte[] title = file.getName().getBytes();
+            byte[] content = Files.readAllBytes(file.toPath());
+            byte[] data = new byte[title.length + 1 + content.length];
+            System.arraycopy(title, 0, data, 0, title.length);
+            System.arraycopy(content, 0, data, title.length + 1, content.length);
+            var representation = CharacterRepresentation.ONE_BYTE;
+            return convert(data, representation, password);
+        } catch (IOException e) {
+            throw new CoderException(e.getMessage(), "Converter::convert");
+        }
     }
 
     @NotNull
