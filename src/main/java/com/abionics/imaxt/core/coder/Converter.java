@@ -1,18 +1,22 @@
 package com.abionics.imaxt.core.coder;
 
 import com.abionics.imaxt.core.CharacterRepresentation;
-import com.abionics.imaxt.core.Encryptor;
+import com.abionics.imaxt.core.crypto.Crypto;
+import com.abionics.imaxt.core.crypto.CryptoAES;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.security.GeneralSecurityException;
 
 import static com.abionics.imaxt.core.Imcryptor.*;
 
 class Converter {
+    private static final Crypto crypto = new CryptoAES();
+
     @NotNull
-    static byte[] convert(final @NotNull File file, String password) throws CoderException {
+    static byte[] convert(final @NotNull File file, String password) throws CoderException, GeneralSecurityException {
         try {
             byte[] title = file.getName().getBytes();
             byte[] content = Files.readAllBytes(file.toPath());
@@ -27,7 +31,7 @@ class Converter {
     }
 
     @NotNull
-    static byte[] convert(@NotNull final String text, String password) {
+    static byte[] convert(@NotNull final String text, String password) throws GeneralSecurityException {
         char[] chars = text.toCharArray();
         boolean ascii = true;
         for (char ch : chars)
@@ -55,10 +59,10 @@ class Converter {
     }
 
     @NotNull
-    static private byte[] convert(byte[] data, CharacterRepresentation representation, @NotNull String password) {
+    static private byte[] convert(byte[] data, CharacterRepresentation representation, @NotNull String password) throws GeneralSecurityException {
         boolean encryption = !password.isEmpty();
         if (encryption) {
-            Encryptor.encrypt(data, password);
+            data = crypto.encrypt(data, password);
         }
 
         int size = METABYTES + data.length;

@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(@NotNull Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/imaxt.fxml"));
         primaryStage.setTitle("Imaxt");
-        primaryStage.setScene(new Scene(root, 500, 540));
+        primaryStage.setScene(new Scene(root, 550, 540));
         primaryStage.setMinWidth(400);
         primaryStage.setMinHeight(500);
         primaryStage.show();

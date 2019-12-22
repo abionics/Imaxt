@@ -6,12 +6,12 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 public class Coder {
     @NotNull
     @Contract("null, _, _ -> fail")
-    public static Imaginator code(Object input, String password, ChannelsSpace space) throws CoderException {
+    public static Imaginator code(Object input, String password, ChannelsSpace space) throws CoderException, GeneralSecurityException {
         byte[] data;
         if (input instanceof File) {
             File file = (File) input;

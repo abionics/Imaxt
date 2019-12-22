@@ -2,15 +2,18 @@ package com.abionics.imaxt.core;
 
 import com.abionics.imaxt.core.coder.Coder;
 import com.abionics.imaxt.core.coder.CoderException;
+import com.abionics.imaxt.core.crypto.CryptoException;
 import com.abionics.imaxt.core.decoder.Decoder;
 import com.abionics.imaxt.core.decoder.DecoderException;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 public class Imcryptor {
     public static final int APPCODE = 0b1011;
@@ -31,7 +34,7 @@ public class Imcryptor {
         this.isCreateFile = isCreateFile;
     }
 
-    public void code(Object input, String password, ChannelsSpace space) throws IOException, CoderException {
+    public void code(Object input, String password, ChannelsSpace space) throws IOException, CoderException, GeneralSecurityException {
         Imaginator imaginator = Coder.code(input, password, space);
 
         var chooser = new FileChooser();
@@ -42,7 +45,7 @@ public class Imcryptor {
         imaginator.save(file);
     }
 
-    public String decode(File input, String password, ChannelsSpace space) throws IOException, DecoderException {
+    public String decode(File input, String password, ChannelsSpace space) throws IOException, DecoderException, CryptoException, GeneralSecurityException {
         char[] data = Decoder.decode(input, password, space);
 
         int separator = 0;
@@ -57,18 +60,14 @@ public class Imcryptor {
         String title = new String(titleBytes);
         if (separator == 0) {
             // text
-            char[] content = new char[data.length - 1];
-            System.arraycopy(data, 1, content, 0, content.length);
-            return new String(content);
+            return convertToString(data, 1);
         } else {
             // file
             separator++;
-            byte[] content = new byte[data.length - separator];
-            for (int i = 0; i < data.length - separator; i++)
-                content[i] = (byte) data[i + separator];
+            byte[] content = convertToBytes(data, separator);
             FileOutputStream writer;
             if (isCreateFile) {
-                FileChooser chooser = new FileChooser();
+                var chooser = new FileChooser();
                 chooser.setInitialFileName(title);
                 File file = chooser.showSaveDialog(window);
                 if (file == null) return "";
@@ -80,5 +79,22 @@ public class Imcryptor {
             writer.close();
             return "";
         }
+    }
+
+    @NotNull
+    @Contract("_, _ -> new")
+    private String convertToString(@NotNull char[] data, int from) {
+        char[] content = new char[data.length - from];
+        System.arraycopy(data, from, content, 0, content.length);
+        return new String(content);
+    }
+
+    @NotNull
+    @Contract(pure = true)
+    private byte[] convertToBytes(@NotNull char[] data, int from) {
+        byte[] content = new byte[data.length - from];
+        for (int i = 0; i < data.length - from; i++)
+            content[i] = (byte) data[i + from];
+        return content;
     }
 }

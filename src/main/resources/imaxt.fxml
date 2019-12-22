@@ -1,172 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.abionics.imaxt.Controller">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="210.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="145.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <GridPane>
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="1000.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Code">
-               <font>
-                  <Font name="mr_CCScottMcCloudRegularG" size="25.0" />
-               </font>
-            </Label>
-            <Label text="Decode" GridPane.columnIndex="1">
-               <font>
-                  <Font name="mr_CCScottMcCloudRegularG" size="25.0" />
-               </font>
-            </Label>
-         </children>
-      </GridPane>
-      <TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0" promptText="Input text you want to code here or choose file via button bellow..." GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets bottom="15.0" left="50.0" right="50.0" />
-         </GridPane.margin>
-         <font>
-            <Font name="Menlo Regular" size="12.0" />
-         </font></TextArea>
-      <GridPane GridPane.rowIndex="3">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <CheckBox fx:id="isUseFileCheckBox" mnemonicParsing="false" text="Use file:">
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                     <font>
-                        <Font size="15.0" />
-                     </font></CheckBox>
-                  <Button fx:id="chooseFileButton" mnemonicParsing="false" text="Choose file">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Button>
-                  <Label fx:id="filePathLabel" text="...">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                     <font>
-                        <Font size="12.0" />
-                     </font></Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-               <children>
-                  <Button fx:id="chooseImageButton" mnemonicParsing="false" text="Choose image">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Button>
-                  <Label fx:id="imagePathLabel" text="...">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                     <font>
-                        <Font size="12.0" />
-                     </font></Label>
-               </children>
-            </HBox>
-            <CheckBox fx:id="isCreateFileCheckBox" mnemonicParsing="false" text="Create new file" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font size="15.0" />
-               </font></CheckBox>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#code" text="Code" GridPane.rowIndex="2">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#decode" text="Decode" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-         </children>
-         <GridPane.margin>
-            <Insets top="15.0" />
-         </GridPane.margin>
-      </GridPane>
-      <GridPane GridPane.rowIndex="2">
-        <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-               <children>
-                  <Label text="Password:">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Label>
-                  <TextField fx:id="passwordTextField" prefHeight="27.0" prefWidth="205.0" promptText="leave it empty if no pass">
-                     <font>
-                        <Font name="Menlo Regular" size="12.0" />
-                     </font></TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
-               <children>
-                  <Label text="Channels Space:">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Label>
-                  <ComboBox fx:id="channelsSpaceComboBox" prefHeight="27.0" prefWidth="170.0" />
-               </children>
-            </HBox>
-         </children>
-      </GridPane>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
-         <children>
-            <Label text="Developed by Abionics">
-               <font>
-                  <Font size="12.0" />
-               </font></Label>
-            <Label text="Email: abionics.dev@gmail.com">
-               <padding>
-                  <Insets top="3.0" />
-               </padding>
-               <font>
-                  <Font size="12.0" />
-               </font></Label>
-         </children>
-      </VBox>
-   </children>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0"
+          prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.abionics.imaxt.Controller">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="210.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="145.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <children>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="1000.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label text="Code">
+                    <font>
+                        <Font name="mr_CCScottMcCloudRegularG" size="25.0"/>
+                    </font>
+                </Label>
+                <Label text="Decode" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="mr_CCScottMcCloudRegularG" size="25.0"/>
+                    </font>
+                </Label>
+            </children>
+        </GridPane>
+        <TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0"
+                  promptText="Input text you want to code here or choose file via button bellow..."
+                  GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="15.0" left="50.0" right="50.0"/>
+            </GridPane.margin>
+            <font>
+                <Font name="Menlo Regular" size="12.0"/>
+            </font>
+        </TextArea>
+        <GridPane GridPane.rowIndex="3">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <CheckBox fx:id="isUseFileCheckBox" mnemonicParsing="false" text="Use file:">
+                            <padding>
+                                <Insets right="10.0"/>
+                            </padding>
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </CheckBox>
+                        <Button fx:id="chooseFileButton" mnemonicParsing="false" text="Choose file">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                        <Label fx:id="filePathLabel" text="...">
+                            <padding>
+                                <Insets left="10.0"/>
+                            </padding>
+                            <font>
+                                <Font size="12.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                    <children>
+                        <Button fx:id="chooseImageButton" mnemonicParsing="false" text="Choose image">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Button>
+                        <Label fx:id="imagePathLabel" text="...">
+                            <padding>
+                                <Insets left="10.0"/>
+                            </padding>
+                            <font>
+                                <Font size="12.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+                <CheckBox fx:id="isCreateFileCheckBox" mnemonicParsing="false" text="Create new file"
+                          GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="15.0"/>
+                    </font>
+                </CheckBox>
+                <Button defaultButton="true" mnemonicParsing="false" onAction="#code" text="Code" GridPane.rowIndex="2">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Button>
+                <Button defaultButton="true" mnemonicParsing="false" onAction="#decode" text="Decode"
+                        GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Button>
+            </children>
+            <GridPane.margin>
+                <Insets top="15.0"/>
+            </GridPane.margin>
+        </GridPane>
+        <GridPane GridPane.rowIndex="2">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label text="Password:">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="passwordTextField" prefHeight="27.0" prefWidth="205.0"
+                                   promptText="leave it empty if no pass">
+                            <font>
+                                <Font name="Menlo Regular" size="12.0"/>
+                            </font>
+                        </TextField>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
+                    <children>
+                        <Label text="Channels Space:">
+                            <font>
+                                <Font size="15.0"/>
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="channelsSpaceComboBox" prefHeight="27.0" prefWidth="170.0"/>
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+            <children>
+                <Label text="Developed by Abionics">
+                    <font>
+                        <Font size="12.0"/>
+                    </font>
+                </Label>
+                <Label text="Email: abionics.dev@gmail.com">
+                    <padding>
+                        <Insets top="3.0"/>
+                    </padding>
+                    <font>
+                        <Font size="12.0"/>
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </children>
 </GridPane>

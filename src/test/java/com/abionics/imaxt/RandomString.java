@@ -12,6 +12,7 @@ class RandomString {
 
     @NotNull
     static String nextString(int length) {
+        if (length == 0) return "";
         StringBuilder result = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
             char character = (char) random.nextInt(32, Character.MAX_CODE_POINT);
@@ -22,6 +23,7 @@ class RandomString {
 
     @NotNull
     static String nextIdentifier(int length) {
+        if (length == 0) return "";
         StringBuilder result = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
             int index = random.nextInt(identifiers.length());

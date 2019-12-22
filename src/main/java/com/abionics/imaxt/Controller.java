@@ -3,6 +3,7 @@ package com.abionics.imaxt;
 import com.abionics.imaxt.core.ChannelsSpace;
 import com.abionics.imaxt.core.Imcryptor;
 import com.abionics.imaxt.core.coder.CoderException;
+import com.abionics.imaxt.core.crypto.CryptoException;
 import com.abionics.imaxt.core.decoder.DecoderException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.Arrays;
 
 public class Controller {
@@ -89,7 +91,7 @@ public class Controller {
             } else {
                 imcryptor.code(text, password, space);
             }
-        } catch (IOException | CoderException e) {
+        } catch (IOException | CoderException | GeneralSecurityException e) {
             showError(e.getMessage());
             e.printStackTrace();
         }
@@ -105,7 +107,9 @@ public class Controller {
             var space = ChannelsSpace.valueOf(channelsSpaceComboBox.getValue());
             String text = imcryptor.decode(image, password, space);
             textArea.setText(text);
-        } catch (IOException | DecoderException e) {
+        } catch (CryptoException e) {
+            showError(e.getMessage());
+        } catch (IOException | DecoderException | GeneralSecurityException e) {
             showError(e.getMessage());
             e.printStackTrace();
         }

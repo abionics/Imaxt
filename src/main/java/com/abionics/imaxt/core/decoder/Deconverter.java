@@ -1,15 +1,21 @@
 package com.abionics.imaxt.core.decoder;
 
 import com.abionics.imaxt.core.CharacterRepresentation;
-import com.abionics.imaxt.core.Encryptor;
+import com.abionics.imaxt.core.crypto.Crypto;
+import com.abionics.imaxt.core.crypto.CryptoAES;
+import com.abionics.imaxt.core.crypto.CryptoException;
 import org.jetbrains.annotations.NotNull;
+
+import java.security.GeneralSecurityException;
 
 import static com.abionics.imaxt.core.Imcryptor.APPCODE;
 import static com.abionics.imaxt.core.Imcryptor.METABYTES;
 
 class Deconverter {
+    private static final Crypto crypto = new CryptoAES();
+
     @NotNull
-    static char[] deconvert(@NotNull byte[] code, String password) throws DecoderException {
+    static char[] deconvert(@NotNull byte[] code, String password) throws DecoderException, CryptoException, GeneralSecurityException {
         //header
         byte header = code[0];
         byte _appcode = (byte) ((header >> 4) & 0xf);
@@ -37,12 +43,13 @@ class Deconverter {
     }
 
     @NotNull
-    private static char[] deconvert1(@NotNull byte[] data, String password, @NotNull CharacterRepresentation representation, boolean encryption) throws DecoderException {
+    private static char[] deconvert1(@NotNull byte[] data, String password, @NotNull CharacterRepresentation representation, boolean encryption) throws DecoderException, CryptoException, GeneralSecurityException {
+        if (encryption) {
+            data = crypto.decrypt(data, password);
+        }
+
         int size = data.length;
         System.out.println("Decode v1: " + representation.toString() + ", size = " + size + ", encryption = " + encryption);
-        if (encryption) {
-            Encryptor.encrypt(data, password);
-        }
         switch (representation) {
             case ONE_BYTE: {
                 char[] result = new char[size];
