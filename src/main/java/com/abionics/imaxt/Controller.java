@@ -91,7 +91,11 @@ public class Controller {
             } else {
                 imcryptor.code(text, password, space);
             }
-        } catch (IOException | CoderException | GeneralSecurityException e) {
+        } catch (CoderException e) {
+            showError(e.getMessage());
+            System.out.println(e.getPlace());
+            e.printStackTrace();
+        } catch (IOException | GeneralSecurityException e) {
             showError(e.getMessage());
             e.printStackTrace();
         }
@@ -109,7 +113,11 @@ public class Controller {
             textArea.setText(text);
         } catch (CryptoException e) {
             showError(e.getMessage());
-        } catch (IOException | DecoderException | GeneralSecurityException e) {
+        } catch (DecoderException e) {
+            showError(e.getMessage());
+            System.out.println(e.getPlace());
+            e.printStackTrace();
+        } catch (IOException | GeneralSecurityException e) {
             showError(e.getMessage());
             e.printStackTrace();
         }

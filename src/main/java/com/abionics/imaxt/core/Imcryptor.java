@@ -22,6 +22,8 @@ public class Imcryptor {
 
     public static final double SIDE_RATIO = 1.0;
 
+    private static final String DEFAULT_SAVE_IMAGE_NAME = "encoded.png";
+
     private final Window window;
     private final String directory;
     public boolean isCreateFile;
@@ -38,7 +40,7 @@ public class Imcryptor {
         Imaginator imaginator = Coder.code(input, password, space);
 
         var chooser = new FileChooser();
-        chooser.setInitialFileName("encoded.png");
+        chooser.setInitialFileName(DEFAULT_SAVE_IMAGE_NAME);
         chooser.setInitialDirectory(new File(directory));
         File file = chooser.showSaveDialog(window);
         if (file == null) return;
