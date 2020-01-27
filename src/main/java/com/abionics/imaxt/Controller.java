@@ -20,15 +20,24 @@ import java.util.Arrays;
 public class Controller {
     static final private String DIRECTORY = "data/";
 
-    @FXML private TextArea textArea;
-    @FXML private TextField passwordTextField;
-    @FXML private ComboBox<String> channelsSpaceComboBox;
-    @FXML private CheckBox isUseFileCheckBox;
-    @FXML private Button chooseFileButton;
-    @FXML private Label filePathLabel;
-    @FXML private Button chooseImageButton;
-    @FXML private Label imagePathLabel;
-    @FXML private CheckBox isCreateFileCheckBox;
+    @FXML
+    private TextArea textArea;
+    @FXML
+    private TextField passwordTextField;
+    @FXML
+    private ComboBox<String> channelsSpaceComboBox;
+    @FXML
+    private CheckBox isUseFileCheckBox;
+    @FXML
+    private Button chooseFileButton;
+    @FXML
+    private Label filePathLabel;
+    @FXML
+    private Button chooseImageButton;
+    @FXML
+    private Label imagePathLabel;
+    @FXML
+    private CheckBox isCreateFileCheckBox;
     private Window window;
 
     private Imcryptor imcryptor;
@@ -36,7 +45,8 @@ public class Controller {
     private File image;
 
 
-    @FXML private void initialize() {
+    @FXML
+    private void initialize() {
         if (new File(DIRECTORY).mkdir()) {
             System.out.println("Created data directory");
         }
@@ -77,7 +87,8 @@ public class Controller {
         return chooser;
     }
 
-    @FXML private void code() {
+    @FXML
+    private void code() {
         if (file == null && isUseFileCheckBox.isSelected()) {
             showError("Choose file or switch to text mode");
             return;
@@ -101,7 +112,8 @@ public class Controller {
         }
     }
 
-    @FXML private void decode() {
+    @FXML
+    private void decode() {
         if (image == null) {
             showError("Choose image to decode");
             return;

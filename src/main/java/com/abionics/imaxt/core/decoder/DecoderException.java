@@ -12,4 +12,3 @@ public class DecoderException extends Exception {
         return place;
     }
 }
-
